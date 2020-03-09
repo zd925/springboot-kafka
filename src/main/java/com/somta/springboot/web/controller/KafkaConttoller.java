@@ -24,6 +24,6 @@ public class KafkaConttoller {
 	@GetMapping("test1")
 	public String test(@RequestParam("data") String data) {
 		String send = produerServer.send(data);
-		return data;
+		return send;
 	}
 }

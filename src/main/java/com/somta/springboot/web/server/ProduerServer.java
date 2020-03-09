@@ -5,6 +5,8 @@ import com.somta.springboot.web.util.kafka.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.Executors;
+
 /**
  * @author DH
  * @date 2020-03-05 09:27
@@ -16,7 +18,9 @@ public class ProduerServer {
 	private Producer producer;
 
 	public String send(String data){
-		producer.send(Constants.KAFKA_TOPIC,"2",data);
+		for (int i = 0; i < 100000; i++) {
+			producer.send(Constants.KAFKA_TOPIC, i + "", data);
+		}
 		return Constants.SUCCESS;
 	}
 
